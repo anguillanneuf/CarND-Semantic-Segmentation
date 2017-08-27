@@ -114,7 +114,7 @@ def optimize(nn_last_layer, correct_label, learning_rate, num_classes):
 tests.test_optimize(optimize)
 
 
-def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, image_input,
+def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_loss, input_image,
              correct_label, keep_prob, learning_rate):
     """
     Train neural network and print out the loss during training.
@@ -147,7 +147,7 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
             for steps, (images, labels) in enumerate(get_batches_fn(batch_size)):
 
                 _, loss = sess.run([train_op, cross_entropy_loss],
-                                   feed_dict={image_input: images, correct_label: labels, learning_rate: lr,
+                                   feed_dict={input_image: images, correct_label: labels, learning_rate: lr,
                                               keep_prob: prob})
 
                 curr_epoch_loss += loss
@@ -200,7 +200,7 @@ def run():
 
         # TODO: Train NN using the train_nn function
 
-        train_nn(sess, 20, 10, get_batches_fn, train_op, cross_entropy_loss, image_input,
+        train_nn(sess, 2, 10, get_batches_fn, train_op, cross_entropy_loss, image_input,
                  correct_label, keep_prob, learning_rate)
 
 
