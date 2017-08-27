@@ -1,4 +1,7 @@
 # Semantic Segmentation
+
+[![img](Screen%20Shot%202017-08-27%20at%207.39.39%20PM.png)]
+
 ### Introduction
 In this project, you'll label the pixels of a road in images using a Fully Convolutional Network (FCN).
 
