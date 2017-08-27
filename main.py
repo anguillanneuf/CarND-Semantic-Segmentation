@@ -1,3 +1,6 @@
+import imageio
+imageio.plugins.ffmpeg.download()
+
 import os.path
 import tensorflow as tf
 import helper
@@ -155,7 +158,7 @@ def train_nn(sess, epochs, batch_size, get_batches_fn, train_op, cross_entropy_l
             print("Epoch {} Average Loss Per Image: {:.5f}".format(epoch, curr_epoch_loss / (len(images) * float(steps))))
 
             if curr_epoch_loss > epoch_loss:
-                print("Epoch {} loss not improving! Early stopping.".format(epoch))
+                print("Loss not improving! Early stopping")
                 break
             else:
                 epoch_loss = curr_epoch_loss
@@ -200,12 +203,16 @@ def run():
 
         # TODO: Train NN using the train_nn function
 
-        train_nn(sess, 2, 10, get_batches_fn, train_op, cross_entropy_loss, image_input,
+        train_nn(sess, 20, 10, get_batches_fn, train_op, cross_entropy_loss, image_input,
                  correct_label, keep_prob, learning_rate)
 
 
         # TODO: Save inference data using helper.save_inference_samples
         helper.save_inference_samples(runs_dir, data_dir, sess, image_shape, logits, keep_prob, image_input)
+
+        # saves the graph
+        saver = tf.train.Saver()
+        saver.save(sess, 'mymodel')
 
         # OPTIONAL: Apply the trained model to a video
         def process_video(original_image, sess=sess, image_shape=image_shape, logits=logits, keep_prob=keep_prob,
@@ -219,6 +226,7 @@ def run():
             im_softmax = im_softmax[0][:, 1].reshape(image_shape[0], image_shape[1])
             segmentation = (im_softmax > 0.5).reshape(image_shape[0], image_shape[1], 1)
 
+            # color road green
             mask = np.dot(segmentation, np.array([[0, 255, 0, 127]]))
             mask = sp.misc.toimage(mask, mode="RGBA")
 
