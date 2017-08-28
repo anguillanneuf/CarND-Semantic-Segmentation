@@ -1,10 +1,10 @@
 # Semantic Segmentation
 
 ## Architecture
-[![img1](Screen%20Shot%202017-08-28%20at%2011.02.00%20AM.png)]
+![img1](Screen%20Shot%202017-08-28%20at%2011.02.00%20AM.png)
 
 ## Training on AWS
-[![img2](Screen%20Shot%202017-08-27%20at%207.39.39%20PM.png)]
+![img2](Screen%20Shot%202017-08-27%20at%207.39.39%20PM.png)
 
 ### Introduction
 In this project, you'll label the pixels of a road in images using a Fully Convolutional Network (FCN).
